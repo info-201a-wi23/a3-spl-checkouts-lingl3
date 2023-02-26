@@ -5,82 +5,53 @@ output: html_document
 
 ### Introduction
 
-An introduction of the data and a description of the trends/books/items you are choosing to analyze (and why!)
+The dataset provided contains information about the checkouts of items in a library system since 2022. In this analysis, I am interested in examining the relationship between print books and ebooks in terms of the number of checkouts they receive. Specifically, I will be looking at the total number of checkouts for each material type, as well as the average number of checkouts for each. By comparing these values, I hope to gain insights into how library patrons are utilizing print books and ebooks, and whether there are any notable differences between the two. This information could be useful for informing decisions about collection development and resource allocation, as well as for understanding broader trends in library usage.
 
 ### Summary Information
 
-Write a summary paragraph of findings that includes the 5 values calculated from your summary information R script
+```{r}
+source("summary.R")
+```
 
-These will likely be calculated using your DPLYR skills, answering questions such as:
-
-- What is the average number of checkouts for each item?
-- What is the month or year with the most/least checkouts for a book that you're interested in?
-- What is the month or year with the most/least checkouts for ebooks?
-- How has the number of print book checkouts changed over time?
-
-Feel free to calculate and report values that you find relevant.
+There are in total of `r book_checkouts` print book checkouts and `r ebook_checkouts` e-book checkouts. In average, each book has been checkout for `r avg_checkouts` times since 2022. Each e-book has an average of `r avg_checkouts_ebook` checkout and each print book has an average of `r avg_checkouts_book` checkout. The book that has most print-book checkouts since 2022 is `r most_checkouts_book` and the book has most e-book checkout is `r most_checkouts_ebook`. For my personal favorite book "Great Gatsby", total print book checkout since 2022 is `r gatsby_book_checkouts` and total e-book checkout is `r gatsby_ebook_checkouts`.
 
 ### The Dataset
 
-- Who collected/published the data?  
-- What are the parameters of the data (dates, number of checkouts, kinds of books, etc.)?
-- How was the data collected or generated?  
-- Why was the data collected?  
-- What, if any, ethical questions do you need to consider when working with this data?  
-- What are possible limitations or problems with this data?   (at least 200 words)
+The "Checkouts by Title" dataset was collected and published by the Seattle Public Library. The dataset contains monthly counts by title of checkouts for all physical and digital items from 2005 to present, with more than 25 million entries. The data was collected from multiple sources, including media vendors such as Overdrive, hoopla, Freegal, and RBDigital, and historical physical item checkouts from the Legrady artwork data archives. The data was collected to track the usage of items in the library's collection. There are ethical considerations to take into account when working with this data, such as protecting the privacy of library users. Possible limitations of the data include the fact that it only counts the initial checkout of physical items and that some subject headings may be missing for older checkouts or digital items without a bibliographic record.
 
 
 ### First Trends Over Time Chart
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+```{r}
+source("chart2.R")
 
-The first chart that you will create and include will show the trend over time of your variable/topic/interest. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- Show more than one, but fewer than ~10 trends
-  - For example, two books, or 5 different mediums
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear - legend title
-In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
-
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, warning = FALSE, code = readLines("chart1_example.R")}
+chart2
 ```
+
+I include this chart to show the overall checkouts from Jan 2022 through Jan 2023. This is important for us to gain a basic view of how checkouts varies through time generally so that we can better understand how each material performs relative to overall pattern.
+
+This plots shows that the checkouts have no clear increasing or decreasing pattern. The chart has two clear troughs, one in February 2022 and another in April 2022. After April, the total number of checkouts shows an overall upward trend.
 
 ### Second Trends Over Time Chart
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+```{r}
+source("chart1.R")
 
-The second chart that you will create and include will show another trend over time of your variable/topic/interest. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- Show more than one, but fewer than ~10 trends
-  - For example, two books, or 5 different mediums
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear - legend title
-In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
-
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, code = readLines("chart2_example.R")}
+chart1
 ```
 
-### Your Choice
+I included the line chart to analyze the monthly checkout patterns of books and ebooks in the library's collection over time. By visualizing the data with a line chart, we can easily identify trends and patterns that may not be immediately apparent from just looking at the raw data.
 
-The last chart is up to you. It could be a line plot, scatter plot, histogram, bar plot, stacked bar plot, and more. Here are some requirements to help guide your design:
+This chart shows that total count of print book checkouts is generally greater than ebook. The trend are similar between book and ebook which shows the general peek period of people getting book from library. One exception is in June 2022, at when ebook has increasingly being borrowed and print book checkouts are significantly decreasing. 
 
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear legend title
+### Pie chart
 
-Here's an example of how to run an R script inside an RMarkdown file:
+```{r}
+source("chart3.R")
 
-``````{r, echo = FALSE, code = readLines("chart2_example.R")}
+chart3
 ```
 
+I choose to make a pie chart to see the composition of checkouts. By using pie chart, it is easier for us to see how the checkouts are formed and how much percent does digital or physical checkout take part in. 
 
+This pie chart shows that digital checkout is significantly larger than physical checkouts. 
